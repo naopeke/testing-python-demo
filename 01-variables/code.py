@@ -32,3 +32,12 @@ print(with_name_two)
 longer_phrase = "Hello, {}. Today is {}"
 formatted = longer_phrase.format("Rolf", "Monday")
 print(formatted)
+
+# string formatting
+name = input("Enter your name: ")
+print(name)
+
+size_input = input("How big is your house (in square feet): ")
+square_feet = int(size_input)
+square_metres = square_feet / 10.8
+print(square_metres)
