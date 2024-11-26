@@ -62,3 +62,24 @@ print(l) #['Lopez', 'Tom', 'Ana', 'Smith']
 
 s.add("Diego")
 print(s) # it isn't append
+
+# usage of set DIFFERENCE
+friends = {"Miguel", "Tom", "Ana"}
+abroad = {"Miguel", "Ana"}
+
+local_friends = friends.difference(abroad)
+print(local_friends) #{'Tom'}
+
+# usage of set UNION
+local = {"Tom"}
+abroad = {"Miguel", "Ana"}
+
+friends = local.union(abroad)
+print(friends) #{'Tom', 'Miguel', 'Ana'}
+
+# usage of set INTERSECTION
+art = {"Bob", "Jen", "Rolf", "Charlie"}
+science = {"Bob", "Jen", "Adam", "Anne"}
+
+both = art.intersection(science)
+print(both) #{'Jen', 'Bob'}
