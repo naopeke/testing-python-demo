@@ -42,3 +42,23 @@ square_feet = int(size_input)
 square_metres = square_feet / 10.8
 print(f"{square_feet} square feet is {square_metres:.2f} square metres.") # .2f 下２桁
 
+user_age = int(input("Enter your age: "))
+# years = int(user_age)
+months = user_age * 12
+print(f"Your age, {user_age}, is equal to {months} months.")
+
+# list
+l = ["Miguel", "Tom", "Ana"] # list, can add and remove
+t = ("Miguel", "Tom", "Ana") # tuples, cannot add and remove
+s = {"Miguel", "Tom", "Ana"} # set, can add and remove, bus cannot duplicate. Order could change at any moment
+
+print(l[0]) # Miguel  cannot use for set
+
+l[0] = "Lopez"
+print(l) #['Lopez', 'Tom', 'Ana']
+
+l.append("Smith")
+print(l) #['Lopez', 'Tom', 'Ana', 'Smith']
+
+s.add("Diego")
+print(s) # it isn't append
