@@ -90,7 +90,6 @@ print(5 == 5) #true
 print(5 > 5)  #false
 print(10 != 10) #false
 
-
 friends = ["Miguel", "Tom"]
 abroad = ["Miguel", "Tom"]
 
@@ -112,3 +111,32 @@ else:
     print("Full speed ahead!")
 
 print("This always runs")
+
+# in
+friends = ["Miguel", "Tom", "Ana"]
+print("Ana" in friends) #true
+
+movies_watched = {"Star Wars", "I am Groot", "Spiderman"}
+user_movie = input("Enter something you've watched recently: ")
+print (user_movie in movies_watched)
+
+# if with in
+movies_watched = {"Star Wars", "I am Groot", "Spiderman"}
+user_movie = input("Enter something you've watched recently: ")
+
+if user_movie in movies_watched:
+    print(f"I've watched {user_movie} too!")
+else:
+    print("I haven't watched that yet.")
+
+number = 7
+user_input = input("Enter 'y' if you wwould like to play: ")
+if user_input in ("y", "Y"): #whether the input is "y" or "Y"
+    user_number = int(input("Guess out number: "))
+    if user_number == number:
+        print("You guessed correctly!")
+    elif abs(number - user_number) in (1, -1):
+    # elif number - user_number in (1, -1):
+        print("You were off by one.")
+    else: 
+        print("Sorry, it's wrong")
