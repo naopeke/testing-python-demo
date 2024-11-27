@@ -50,6 +50,7 @@ print(f"Your age, {user_age}, is equal to {months} months.")
 # list
 l = ["Miguel", "Tom", "Ana"] # list, can add and remove
 t = ("Miguel", "Tom", "Ana") # tuples, cannot add and remove
+# my_tuple = (3,) my_tuple = 3, To create a tuple with a single value in Python, you need to include a comma after the value 
 s = {"Miguel", "Tom", "Ana"} # set, can add and remove, bus cannot duplicate. Order could change at any moment
 
 print(l[0]) # Miguel  cannot use for set
@@ -83,3 +84,19 @@ science = {"Bob", "Jen", "Adam", "Anne"}
 
 both = art.intersection(science)
 print(both) #{'Jen', 'Bob'}
+
+# booleans
+print(5 == 5) #true
+print(5 > 5)  #false
+print(10 != 10) #false
+
+
+friends = ["Miguel", "Tom"]
+abroad = ["Miguel", "Tom"]
+
+print(friends == abroad) #true
+print (friends is abroad) #false the lists themselves are different
+
+friends = ["Miguel", "Tom"]
+abroad = friends
+print (friends is abroad) #true
