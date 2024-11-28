@@ -178,3 +178,40 @@ total = sum(grades)
 amount = len(grades)
 
 print(total / amount)
+
+# list comprenhensions
+numbers = [1, 3, 5]
+doubled = []
+for num in numbers:
+    doubled.append(num * 2)
+
+
+numbers = [1, 3, 5]
+doubled = [x * 2 for x in numbers]
+print(doubled)
+
+
+friends = ["Rolf", "Sam", "Samantha", "Sauron", "Jen"]
+starts_s = []
+for friend in friends:
+    if friend.startswith("S"):
+        starts_s.append(friend)
+print(starts_s) #['Sam', 'Samantha', 'Sauron']
+
+
+friends = ["Rolf", "Sam", "Samantha", "Sauron", "Jen"]
+starts_s = [friend for friend in friends if friend.startswith("S")]
+print(starts_s) #['Sam', 'Samantha', 'Sauron']
+
+
+friends = ["Sam", "Samantha", "Sauron"]
+starts_s = [friend for friend in friends if friend.startswith("S")]
+print(starts_s) #['Sam', 'Samantha', 'Sauron']
+print(friends)
+print(friends is starts_s) #false friends and starts_s aren't the same
+print("friends: ", id(friends), "starts_s: ", id(starts_s)) # using the different memory
+
+
+friends = ["Sam", "Samantha", "Sauron"]
+starts_s = friends
+print(friends is starts_s) #true
