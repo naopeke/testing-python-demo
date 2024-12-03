@@ -215,3 +215,40 @@ print("friends: ", id(friends), "starts_s: ", id(starts_s)) # using the differen
 friends = ["Sam", "Samantha", "Sauron"]
 starts_s = friends
 print(friends is starts_s) #true
+
+
+# dictionaries
+friends_ages = {"Rolf": 24, "Adam": 30, "Anne": 27}
+print(friends_ages["Adam"]) # 30
+
+friends_ages["Bob"] = 20
+print(friends_ages) # {'Rolf':24, 'Adam':30, 'Anne':27, 'Bob':20}
+
+friends = [
+    {"name": "Rolf", "age": 24},
+    {"name": "Adam", "age": 30},
+    {"name": "Anne", "age": 27},
+]
+print(friends[0]) #{"Rolf", "age": 24}
+print(friends[0]["name"])
+
+student_attendance = {"Rolf": 96, "Bob": 80, "Anne": 100}
+
+#まず、student_attendance 辞書からキー（学生の名前）を1つずつ取り出して、変数 student に格納
+#次に、student_attendance[student] でその学生に対応する出席状況を取り出して表示
+for student in student_attendance:
+    print(f"{student}: {student_attendance[student]}")
+
+#items() メソッドを使って、student_attendance 辞書からキーと値のペアを同時に取り出し
+#各イテレーションで、student には学生の名前が、attendance にはその学生の出席状況が格納
+#student と attendance を使って出力
+for student, attendance in student_attendance.items():
+    print(f"{student}: {attendance}")
+
+if "Bob" in student_attendance:
+    print(f"Bob: {student_attendance['Bob']}")
+else:
+    print("Bob is not a student in this class.")
+
+attendance_values = student_attendance.values()
+print(sum(attendance_values) / len(attendance_values)) 
