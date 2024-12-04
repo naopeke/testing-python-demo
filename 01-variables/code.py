@@ -251,4 +251,14 @@ else:
     print("Bob is not a student in this class.")
 
 attendance_values = student_attendance.values()
-print(sum(attendance_values) / len(attendance_values)) 
+print(sum(attendance_values) / len(attendance_values))
+
+# destructuring variables
+x = [(5, 11)] #normally not nessesary
+x, y = 5, 11
+
+t = 5, 11
+x, y = t
+print(x, y) #5  11
+
+
