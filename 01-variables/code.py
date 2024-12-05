@@ -261,4 +261,14 @@ t = 5, 11
 x, y = t
 print(x, y) #5  11
 
+student_attendance = {"Rolf": 96, "Bob": 80, "Anne": 100}
+print(list(student_attendance.items())) #[('Rolf', 96), ('Bob', 80), ('Anne', 100)]
+# for student, attendance in student_attendance.itens():
+#    print(f"{student}: {attendance}")
 
+for t in student_attendance.items():
+    print(t)
+    print(f"{student}:{attendance}")
+# ('Rolf', 96)
+# ('Bob', 80)
+# ('Anne', 100)
