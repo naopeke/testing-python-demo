@@ -296,3 +296,16 @@ head, *tail = [1, 2, 3, 4, 5]
 print(head)
 print(*tail)
 
+
+# function
+def hello():
+    print("Hello World")
+
+hello() # Hello World
+
+def user_age_in_seconds():
+    user_age = int(input("Enter your age: "))
+    age_seconds = user_age * 364 * 24 * 60 * 60
+    print(f"Your age in seconds is {age_seconds}")
+
+user_age_in_seconds()
