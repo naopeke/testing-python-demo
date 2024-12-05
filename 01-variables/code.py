@@ -309,3 +309,28 @@ def user_age_in_seconds():
     print(f"Your age in seconds is {age_seconds}")
 
 user_age_in_seconds()
+
+friends = ["Rolf", "Bob"]
+
+def add_friend():
+    friend_name = input("Enter your friend name: ")
+    friends = friends + [friend_name] # new variables only in the function scope
+ # ERROR!!
+
+
+def add_friend2():
+    friend_name = input("Enter your friend name: ")
+    f = friends + [friend_name] # new variables only in the function scope
+ # OK
+
+
+friends = []
+def add_friend3():
+    friends.append("Rolf")
+
+add_friend()
+add_friend()
+add_friend()
+# ['Rolf', 'Rolf', 'Rolf']
+
+print(friends) # [Rolf]
