@@ -334,3 +334,31 @@ add_friend()
 # ['Rolf', 'Rolf', 'Rolf']
 
 print(friends) # [Rolf]
+
+# Function arguments and parameter
+def add (x, y):
+    pass # Do nothing
+
+add(5, 3)
+
+def add (x, y):
+    result = x + y
+    print(result)
+
+add(5, 3) # 8
+
+def say_hello(name, surname):
+    print(f"Hello, {name} {surname}")
+
+say_hello("John", "Smith")
+say_hello(surname="Smith", name="John")
+
+
+def divide(dividend, divisor):
+    if divisor != 0:
+        print(dividend / divisor)
+    else:
+        print("You cannot divide")
+
+divide(15, 0)
+divide(dividend=15, divisor=0)
