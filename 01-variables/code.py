@@ -362,3 +362,67 @@ def divide(dividend, divisor):
 
 divide(15, 0)
 divide(dividend=15, divisor=0)
+
+
+# Default parameter values
+def add(x, y):
+    print (x + y)
+
+add(5, 8)
+
+def add(x, y=8): # default value = 8
+    print (x + y)
+
+add(5)
+add(x=5)
+
+
+default_y = 3
+
+def add(x, y=default_y):
+    sum = x + y
+    print(sum)
+
+add(2)
+
+
+# Functions returning values
+def add(x, y):
+    print(x + y)
+    return x + y
+
+add(5, 8)
+retult = add(5, 8)
+print(result)
+
+
+def divide(dividend, divisor):
+    if divisor != 0:
+        return dividend / divisor
+    else:
+        return "You cannot divide"
+
+result = divide(15, 0)
+print(result)
+
+
+# Lambda function
+def add(x, y):
+    return x + y
+
+print(add(5, 7))
+
+lambda x, y: x + y
+add = lambda x, y: x + y # can add new name
+print(add(5, 7))
+
+print((lambda x, y: x + y)(5, 7))
+
+def double(x):
+    return x * 2
+
+sequence = [1, 3, 5, 7]
+doubled = [double(x) for x in sequence]
+doubled = map(double, sequence)
+doubled = [(lambda x: x * 2)(x) for x in sequence]
+doubled = list(map(lambda x: x * 2, sequence))
