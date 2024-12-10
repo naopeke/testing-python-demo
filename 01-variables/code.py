@@ -426,3 +426,24 @@ doubled = [double(x) for x in sequence]
 doubled = map(double, sequence)
 doubled = [(lambda x: x * 2)(x) for x in sequence]
 doubled = list(map(lambda x: x * 2, sequence))
+
+
+# Dictionary comprehensions
+users = [
+    (0, "Bob", "password"),
+    (1, "Rolf", "rolf123"),
+    (2, "Jose", "long4password")
+]
+
+username_mapping = {user[1]: user for user in users}
+print(username_mapping) #{'Bob': (0, 'Bob', 'password'), 'Rolf':(1, 'Rolf', 'rolf123'), 'Jose':(2, 'Jose', 'long4password')}
+print(username_mapping["Bob"]) #(0, 'Bob', 'password')
+
+username_input = input("Enter your username: ")
+password_input = input("Enter your password: ")
+_, username, password = username_mapping[username_input]
+
+if password_input == password:
+    print("Your details are correct!")
+else:
+    print("Your details are incorrect.")
