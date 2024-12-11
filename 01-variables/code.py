@@ -459,6 +459,39 @@ def average_grade_all_students(student_list):
     total = 0
     count = 0
     for student in student_list:
-        total = total + sum(student['grades'])
-        count = count + len(student['grades'])
+        total = total + sum(student['grades']) # total += sum(student['grades'])
+        count = count + len(student['grades']) # count += len(student['grades'])
     return total / count
+
+
+# Unpacking arguments
+def multiply(*args): #*argsを使って任意の数の引数
+    print(args)  # タプルとしての引数を表示
+    total = 1 # 初期値を1に設定（掛け算のため）
+    for arg in args:
+        total = total * arg # 各引数を掛け合わせる
+    return total
+
+print(multiply(1, 3, 5))
+
+
+def add(x, y):
+    return x + y
+
+nums = [3, 5]
+print(add(*nums))
+
+nums = {"x": 15, "y": 25}
+print(add(x=nums["x"], y=nums["y"]))
+print(add(**nums))
+
+
+def apply(*args, operator): #*args: 任意の数の位置引数をタプルとして受け取ります。
+    if operator == "*":
+        return multiply(args) #operatorが "*" の場合、multiply 関数を呼び出します。
+    elif operator == "+":
+        return sum(args)    #operatorが "+" の場合、組み込み関数 sum を使用して引数の合計を計算します。
+    else:
+        return "No valid operator provided to apply()"
+
+print(apply(1, 3, 6, 7), operator="+")
