@@ -495,3 +495,21 @@ def apply(*args, operator): #*args: 任意の数の位置引数をタプルと�
         return "No valid operator provided to apply()"
 
 print(apply(1, 3, 6, 7), operator="+")
+
+
+#関数に渡される引数をキーワード付きで渡すための方法です。kwargsは"keyword arguments"の略で、関数の引数として名前付きの値を指定する際に使います。
+#kwargsは、通常、関数の引数リストで**（ダブルアスタリスク）を使って定義されます。これにより、関数は任意の数のキーワード引数を受け取ることができます。
+def named(**kwargs):
+    print(kwargs)
+
+named(name="Bob", age=25) # {'name': 'Bob', 'age': 25}
+
+def named2(name, age):
+    print(name, age)
+details = {"name": "Bob", "age": 25}
+named(**details)
+
+def greet(**kwargs):
+    for name, value in kwargs.items():
+        print(f"{name}: {value}")
+greet(name="Alice", age=30, country="USA")
