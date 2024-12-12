@@ -504,12 +504,36 @@ def named(**kwargs):
 
 named(name="Bob", age=25) # {'name': 'Bob', 'age': 25}
 
+
 def named2(name, age):
     print(name, age)
 details = {"name": "Bob", "age": 25}
-named(**details)
+
+named2(**details)
+
 
 def greet(**kwargs):
     for name, value in kwargs.items():
         print(f"{name}: {value}")
+
 greet(name="Alice", age=30, country="USA")
+
+
+def print_nicely(**kwargs):
+    named(**kwargs)
+    for arg, value in kwargs.items():
+        print(f"{arg}: {value}")
+
+print_nicely(name="Bob", age=25)
+
+
+def both(*args, **kwargs):
+    print(args)
+    print(kwargs)
+
+both(1, 3, 5, name="Bob", age=25)
+
+"""
+def post(url, data=None, json=None, **kwargs):
+    return request('post', url, data=data, json=json, **kwargs)
+"""
