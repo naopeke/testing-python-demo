@@ -34,3 +34,12 @@ store = Store("My Store")
 store.add_item("Apple", 1.5)
 store.add_item("Banana", 0.8)
 print(store.stock_price())  # Output: 2.3
+
+
+class ClassTest:
+    def instance_method(self):
+        print('called instance_method')
+
+test = ClassTest()
+test.instance_method()
+ClassTest.instance_method(test)
