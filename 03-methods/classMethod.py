@@ -16,3 +16,18 @@ class ClassTest2:
         print(f"Called class_method of {cls}")
 
 ClassTest2.class_method() # Called class_method of <class '__main__.ClassTest2'>
+
+
+class ClassTest3:
+    def instance_method(self):
+        print(f"called instance_method {self}")
+    
+    @classmethod
+    def class_method(cls):
+        print(f"Called class_method of {cls}")
+
+    @staticmethod
+    def static_method():
+        print(f"Called static_method")
+
+ClassTest3.static_method() # Called class_method of <class '__main__.ClassTest2'>
