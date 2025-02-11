@@ -48,4 +48,4 @@ except ZeroDivisionError:
 else:
     print("All student averages calculated")
 finally:
-    print("End of student average calculation")
+    print("--End of student average calculation--")
