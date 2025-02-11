@@ -27,3 +27,5 @@ except ZeroDivisionError as e:
     print("There are no grades yet in your list")
 else:
     print(f"The average grade is {average}")
+finally:
+    print("Thank you")
