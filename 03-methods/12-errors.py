@@ -7,6 +7,9 @@
 def divide(dividend, divisor):
     if divisor == 0:
         raise ZeroDivisionError("Divisor cannot be 0.")
+        raise TypeError
+        raise ValueError
+        raise RuntimeError
     return dividend / divisor
 
 # grades = [78, 99, 85, 100]
@@ -22,7 +25,5 @@ try:
 except ZeroDivisionError as e:
     print(e)
     print("There are no grades yet in your list")
-    average = None
-
-if average is not None:
+else:
     print(f"The average grade is {average}")
