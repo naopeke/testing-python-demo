@@ -29,3 +29,23 @@ else:
     print(f"The average grade is {average}")
 finally:
     print("Thank you")
+
+
+students = [
+    {"name": "Bob", "grades": [75, 90]},
+    {"name": "Rolf", "grades": []},
+    {"name": "Mary", "grades": [100, 90]},
+]
+
+try:
+    for student in students:
+        name = student["name"]
+        grades = student["grades"]
+        average = divide(sum(grades), len(grades))
+        print(f"{name} averaged {average}")
+except ZeroDivisionError:
+    print(f"ERROR: {name} has no grades")
+else:
+    print("All student averages calculated")
+finally:
+    print("End of student average calculation")
