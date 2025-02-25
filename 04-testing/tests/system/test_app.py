@@ -7,6 +7,18 @@ import random
 from datetime import datetime
 
 class AppTest(TestCase): #AppTestクラスはTestCaseを継承
+
+    def test_menu_prints_prompt(self):
+        with patch('builtins.input') as mocked_input:
+            app.menu()
+            mocked_input.assert_called_with(app.MENU_PROMPT)
+    
+    def test_menu_calls_print_blogs(self):
+        with patch('app.print_blogs') as mocked_menu_print: #patch('app.print_blogs')で、app.print_blogs関数をモック化しています。これにより、menu関数内でprint_blogsが呼び出されたかどうかを確認できます
+            with patch('builtins.input', return_value='q'): #patch('builtins.input')で、input関数をモック化し、入力をシミュレートしています。
+                app.menu()
+                mocked_menu_print.assert_called() #print_blogsが1回以上呼び出されたかどうかを確認しています。
+
     def test_print_blogs(self):
         blog = Blog('Test', 'Test Author') #Blogクラスのインスタンスを作成
         app.blogs = {'Test': blog} #app.blogs辞書(app.py)にブログを追加
@@ -15,6 +27,7 @@ class AppTest(TestCase): #AppTestクラスはTestCaseを継承
             mocked_print.assert_called_with('- Test by Test Author (0 posts)') #print関数が'- Test Blog'という文字列を出力するかどうかを確認しています。
 
 
+###########################################################
 #外部のAPIを呼び出す関数をテストしたいが、実際にはAPIを呼び出したくない場合
 def fetch_data():
     response = requests.get('https://api.example.com/data')
@@ -102,3 +115,6 @@ class TestCurrentTime(TestCase):
         # アサーション
         self.assertEqual(result, fixed_time)
         mock_datetime.now.assert_called_once()
+
+#####################################################################
+
