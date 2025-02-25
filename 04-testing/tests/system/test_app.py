@@ -5,6 +5,7 @@ from blog import Blog
 import requests #pip install requests
 import random
 from datetime import datetime
+from post import Post
 
 class AppTest(TestCase): #AppTestクラスはTestCaseを継承
 
@@ -25,6 +26,40 @@ class AppTest(TestCase): #AppTestクラスはTestCaseを継承
         with patch('builtins.print') as mocked_print: #patchを使って、print関数をモックに置き換えています。mocked_printは、モック化されたprint関数です。printはPythonの組み込み関数であり、builtinsモジュールに定義されています。そのため、patchでモック化する際は、builtins.printと完全なパスを指定する必要があります。
             app.print_blogs() #app.pyの中のprint_blogs関数を呼び出しています。
             mocked_print.assert_called_with('- Test by Test Author (0 posts)') #print関数が'- Test Blog'という文字列を出力するかどうかを確認しています。
+
+    def test_ask_create_blog(self):
+        with patch('builtins.input', return_value = 'Test') as mocked_input:
+            mocked_input.side_effect = {'Test', 'Test Author'}
+            app.ask_create_blog()
+            self.assertIsNone(app.blogs.get('Test'))
+    
+    def test_ask_read_blog(self):
+        blog = Blog('Test', 'Test Author') #Blogクラスのインスタンスを作成
+        app.blogs = {'Test': blog} #app.blogs辞書(app.py)にブログを追加
+        with patch('builtins.input', return_value = 'Test'):
+            with patch('app.print_posts') as mocked_print_posts:
+                app.ask_read_blog()
+                mocked_print_posts.assert_called_with(blog)
+    
+    def test_print_posts(self):
+        blog = Blog('Test', 'Test Author') #Blogクラスのインスタンスを作成
+        blog.create_post('Test Post', 'Test Content')
+        app.blogs = {'Test': blog} #app.blogs辞書(app.py)にブログを追加
+        with patch('app.print_post') as mocked_print_post:
+            app.print_posts(blog)
+            mocked_print_post.assert_called_with(blog.posts[0])
+
+    def test_print_post(self):
+        post = Post('Post title', 'Post content')
+        expected_print = '''
+--- Post title ---
+
+Post content
+
+'''
+        with patch('builtins.print') as mocked_print:
+            app.print_post(post)
+            mocked_print.assert_called_with(expected_print)
 
 
 ###########################################################
