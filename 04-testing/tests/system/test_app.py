@@ -9,6 +9,10 @@ from post import Post
 
 class AppTest(TestCase): #AppTestクラスはTestCaseを継承
 
+    def setUp(self): # run before each test
+        blog = Blog('Test', 'Test Author') #Blogクラスのインスタンスを作成
+        app.blogs = {'Test': blog} #app.blogs辞書(app.py)にブログを追加
+
     def test_menu_calls_create_blog(self):
         with patch('builtins.input') as mocked_input:
             with patch('app.ask_create_blog') as mocked_ask_create_blog:
@@ -17,7 +21,7 @@ class AppTest(TestCase): #AppTestクラスはTestCaseを継承
                 mocked_ask_create_blog.assert_called()
 
     def test_menu_prints_prompt(self):
-        with patch('builtins.input') as mocked_input:
+        with patch('builtins.input', return_value='q') as mocked_input: #待っているのでReturn
             app.menu()
             mocked_input.assert_called_with(app.MENU_PROMPT)
     
@@ -28,8 +32,8 @@ class AppTest(TestCase): #AppTestクラスはTestCaseを継承
                 mocked_menu_print.assert_called() #print_blogsが1回以上呼び出されたかどうかを確認しています。
 
     def test_print_blogs(self):
-        blog = Blog('Test', 'Test Author') #Blogクラスのインスタンスを作成
-        app.blogs = {'Test': blog} #app.blogs辞書(app.py)にブログを追加
+        # blog = Blog('Test', 'Test Author') #Blogクラスのインスタンスを作成
+        # app.blogs = {'Test': blog} #app.blogs辞書(app.py)にブログを追加
         with patch('builtins.print') as mocked_print: #patchを使って、print関数をモックに置き換えています。mocked_printは、モック化されたprint関数です。printはPythonの組み込み関数であり、builtinsモジュールに定義されています。そのため、patchでモック化する際は、builtins.printと完全なパスを指定する必要があります。
             app.print_blogs() #app.pyの中のprint_blogs関数を呼び出しています。
             mocked_print.assert_called_with('- Test by Test Author (0 posts)') #print関数が'- Test Blog'という文字列を出力するかどうかを確認しています。
@@ -41,17 +45,18 @@ class AppTest(TestCase): #AppTestクラスはTestCaseを継承
             self.assertIsNone(app.blogs.get('Test'))
     
     def test_ask_read_blog(self):
-        blog = Blog('Test', 'Test Author') #Blogクラスのインスタンスを作成
-        app.blogs = {'Test': blog} #app.blogs辞書(app.py)にブログを追加
+        # blog = Blog('Test', 'Test Author') #Blogクラスのインスタンスを作成
+        # app.blogs = {'Test': blog} #app.blogs辞書(app.py)にブログを追加
         with patch('builtins.input', return_value = 'Test'):
             with patch('app.print_posts') as mocked_print_posts:
                 app.ask_read_blog()
-                mocked_print_posts.assert_called_with(blog)
+                mocked_print_posts.assert_called_with(app.blog['Test'])
     
     def test_print_posts(self):
-        blog = Blog('Test', 'Test Author') #Blogクラスのインスタンスを作成
-        blog.create_post('Test Post', 'Test Content')
-        app.blogs = {'Test': blog} #app.blogs辞書(app.py)にブログを追加
+        # blog = Blog('Test', 'Test Author') #Blogクラスのインスタンスを作成
+        # blog.create_post('Test Post', 'Test Content')
+        # app.blogs = {'Test': blog} #app.blogs辞書(app.py)にブログを追加
+        blog = app.blogs['Test']
         with patch('app.print_post') as mocked_print_post:
             app.print_posts(blog)
             mocked_print_post.assert_called_with(blog.posts[0])
@@ -69,15 +74,15 @@ Post content
             mocked_print.assert_called_with(expected_print)
     
     def ask_create_post(self):
-        blog = Blog('Test', 'Test Author')
-        app.blogs = {'Test': blog}
+        # blog = Blog('Test', 'Test Author')
+        # app.blogs = {'Test': blog}
         with patch('builtins.input') as mocked_input:
             mocked_input.side_effect = {'Test', 'Test Title', 'Test Content'}
 
             app.ask_create_post()
 
-            self.assertEqual(blog.posts[0].title, 'Test Title')
-            self.assertEqual(blog.posts[0].content, 'Test Content')
+            self.assertEqual(app.blogs['Test'].posts[0].title, 'Test Title')
+            self.assertEqual(app.blogs['Test'].posts[0].content, 'Test Content')
 
 
 ###########################################################
